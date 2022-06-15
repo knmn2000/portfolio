@@ -22,7 +22,7 @@ const StyledFooter = styled.footer`
 
 const FooterGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 30px;
   margin-bottom: 30px;
   margin-top: 20px;
@@ -33,7 +33,7 @@ const Footer = (): JSX.Element => {
   const links = React.useMemo(
     () => [
       {
-        url: 'https://github.com/shellbear',
+        url: 'https://github.com/knmn2000',
         icon: SiGithub,
       },
       {
@@ -41,19 +41,15 @@ const Footer = (): JSX.Element => {
         icon: SiTwitter,
       },
       {
-        url: 'mailto:hello@shellbear.me',
+        url: 'mailto:karan1501mannan@gmail.com',
         icon: MdMail,
       },
       {
-        url: 'https://malt.fr/profile/antoineordonez',
-        icon: Malt,
-      },
-      {
-        url: 'https://linkedin.com/in/antoine-ordonez',
+        url: 'https://linkedin.com/in/karan-mannan',
         icon: SiLinkedin,
       },
       {
-        url: 'https://instagram.com/croissant2france',
+        url: 'https://instagram.com/karan.mannan',
         icon: Instagram,
       },
     ],
@@ -67,7 +63,7 @@ const Footer = (): JSX.Element => {
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/projects">Projects</Link>
-          <Link href="mailto:hello@shellbear.me">Contact</Link>
+          <Link href="mailto:karan1501mannan@gmail.com">Contact</Link>
         </Grid>
       </Container>
       <FooterGrid>

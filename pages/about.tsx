@@ -4,18 +4,18 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 import {
-  SiGo,
-  SiKubernetes,
-  SiElixir,
+  SiFirebase,
   SiPostgresql,
   SiTypescript,
   SiAmazonaws,
   SiGooglecloud,
-  SiTerraform,
   SiReact,
   SiNextdotjs,
   SiPython,
   SiGraphql,
+  SiNodedotjs,
+  SiMongodb,
+  SiBootstrap,
 } from 'react-icons/si';
 import { getPosts, Post } from '@posts';
 import { TransparentLink } from '@components';
@@ -28,12 +28,12 @@ const About = ({ experiences }: AboutProps): JSX.Element => {
   const stacks = React.useMemo(
     () => [
       {
-        Icon: SiGo,
-        url: 'https://golang.org/',
+        Icon: SiNodedotjs,
+        url: 'https://nodejs.org/en/',
       },
       {
-        Icon: SiKubernetes,
-        url: 'https://kubernetes.io/',
+        Icon: SiMongodb,
+        url: 'https://www.mongodb.com/',
       },
       {
         Icon: SiTypescript,
@@ -56,16 +56,16 @@ const About = ({ experiences }: AboutProps): JSX.Element => {
         url: 'https://nextjs.org/',
       },
       {
-        Icon: SiElixir,
-        url: 'https://elixir-lang.org/',
+        Icon: SiBootstrap,
+        url: 'https://getbootstrap.com/',
       },
       {
         Icon: SiGooglecloud,
         url: 'https://cloud.google.com/',
       },
       {
-        Icon: SiTerraform,
-        url: 'https://www.terraform.io/',
+        Icon: SiFirebase,
+        url: 'https://firebase.google.com/',
       },
       {
         Icon: SiPostgresql,
@@ -86,15 +86,14 @@ const About = ({ experiences }: AboutProps): JSX.Element => {
       </Head>
       <Container alignContent="center" alignItems="center">
         <Title fontSize={['3rem', '4rem']} as="h2">
-          CTO & passionate
+          Developer {'&'} curious
         </Title>
         <Container maxWidth={['100%', '720px']} marginY="2rem">
-          <Text>I&apos;m a Full-Stack/DevOps developer living in Paris.</Text>
+          <Text>I&apos;m a Frontend developer living in Haryana.</Text>
           <Text>
-            During my free time I like going gym, doing Bench Press, make design
-            and make video edits on After Effects. You can check some cool drone
-            edits on my&nbsp;
-            <a href="https://instagram.com/croissant2france">Instagram</a>.
+            During my free time I like going gym, playing guitar, make photoshop
+            edits. You can check some of my guitar videos on instagram&nbsp;
+            <a href="https://instagram.com/karan.mannan">Instagram</a>.
           </Text>
         </Container>
       </Container>
