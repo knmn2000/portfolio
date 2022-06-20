@@ -37,7 +37,8 @@ const Footer = (): JSX.Element => {
         icon: SiGithub,
       },
       {
-        url: 'https://twitter.com/_shellbear',
+        // TODO add twitter
+        url: '#',
         icon: SiTwitter,
       },
       {

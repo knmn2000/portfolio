@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+    padding: 0 1rem;
 }
 
 .main {
@@ -134,6 +135,9 @@
   height: 1em;
 }
 
+#projects-grid {
+  grid-gap: 5%;
+}
 @media (max-width: 600px) {
   .grid {
     width: 100%;

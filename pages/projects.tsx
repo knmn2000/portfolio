@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
-import { GetStaticProps } from 'next';
 
 import { Title, Container, Text, Button, Grid, Link, List } from '@components';
-import { getPosts, Post } from '@posts';
 
-interface ProjectProps {
-  projects: Post[];
-}
+type Project = {
+  slug: string;
+  url: string;
+  preview: string;
+  title: string;
+  caption: string;
+  tags: string[];
+};
 
 const ProjectImage = styled.img`
   width: 100%;
@@ -37,81 +40,127 @@ const ProjectTag = styled.li`
 const ProjectButton = styled(Button)`
   padding: 12px 30px;
 `;
+const projects: Project[] = [
+  {
+    slug: '1',
+    url: 'https://github.com/knmn2000/Bajaj_FinSearch-hackrx2.0',
+    preview: './img/bajaj.png',
+    title: 'BajajFinSearch',
+    caption:
+      'An anonymous work marketplace with A.I based job matching. Available on Mobile and website.',
+    tags: ['NodeJs', 'ElasticSearch', 'Kibana'],
+  },
+  {
+    slug: '2',
+    url: 'https://github.com/knmn2000/crossBoards',
+    preview: './img/crossboards.png',
+    title: 'Crossboards',
+    caption:
+      'Made a React Native app and a ReactJS webapp to make copying text across devices easier. All content is synced via Firestore, in real-time',
+    tags: ['reactJS', 'Firebase', 'ReactNative'],
+  },
+  {
+    slug: '3',
+    url: 'https://github.com/knmn2000/Miles-Prower',
+    preview: './img/sonic.png',
+    title: 'BajajFinSearch',
+    caption:
+      'An anonymous work marketplace with A.I based job matching. Available on Mobile and website.',
+    tags: ['reactJS'],
+  },
+  {
+    slug: '4',
+    url: 'https://github.com/knmn2000/MuskAPI',
+    preview: './img/musk.png',
+    title: 'MuskAPI',
+    caption:
+      'Scraped the twitter profile of Elon Musk for his tweets and made them available as a service publicly',
+    tags: ['Typescript', 'ReactJS', 'Python', 'Scrapy'],
+  },
+  {
+    slug: '5',
+    url: 'https://github.com/knmn2000/jioGuessr',
+    preview: './img/jioguessr.png',
+    title: 'JioGuessr',
+    caption:
+      'Open source version of the popular game GeoGuessr. The game drops you in a random Google maps-street view location, and the player needs to guess where they are by navigating around the streets and looking for clues.',
+    tags: ['Typescript', 'ReactJS', 'NodeJs'],
+  },
+];
+const Projects = (): JSX.Element => {
+  const [isMobile, setIsMobile] = useState(false);
 
-const Projects = ({ projects }: ProjectProps): JSX.Element => (
-  <Container marginBottom="5rem">
-    <Head>
-      <title>Projects</title>
-    </Head>
-    <Container alignItems="center">
-      <Title>Projects</Title>
-      <Text textAlign="center">
-        I&apos;m always working on new projects. <br />
-        You can find them on my&nbsp;
-        <a href="https://github.com/shellbear">Github</a>.
-      </Text>
-    </Container>
-    <Grid
-      py="4rem"
-      gridTemplateColumns={['1fr', 'repeat(2, 1fr)']}
-      width="100%"
-      gridGap="10%"
-    >
-      {projects.map(({ data }) => (
-        <ProjectContainer
-          key={data.slug}
-          flexDirection="column"
-          alignItems="flex-start"
-          width="100%"
-          gridGap="1.5rem"
-        >
-          <Link href={data.url} width="100%">
-            <ProjectImage src={data.preview} />
-          </Link>
-          <Container
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center"
+  useEffect(() => {
+    window
+      .matchMedia('(min-width: 800px)')
+      .addEventListener('change', (e) => setIsMobile(e.matches));
+  }, []);
+  return (
+    <Container marginBottom="5rem">
+      <Head>
+        <title>Projects</title>
+      </Head>
+      <Container alignItems="center">
+        <Title>Projects</Title>
+        <Text textAlign="center">
+          I&apos;m always working on new projects. <br />
+          You can find them on my&nbsp;
+          <a href="https://github.com/knmn2000">Github</a>.
+        </Text>
+      </Container>
+      <Grid
+        py="4rem"
+        gridTemplateColumns={['3fr', `repeat(${isMobile ? '2' : '1'}, 1fr)`]}
+        width="100%"
+        gridGap={isMobile ? '5%' : '1%'}
+        id="projects-grid"
+      >
+        {projects.map((data: Project) => (
+          <ProjectContainer
+            key={data.slug}
+            flexDirection="column"
+            alignItems="flex-start"
             width="100%"
+            gridGap="1.5rem"
           >
-            <Link href={data.url}>
-              <Title fontSize="2rem" as="h2">
-                {data.title}
-              </Title>
+            <Link href={data.url} width="100%">
+              <ProjectImage src={data.preview} />
             </Link>
-            <Link href={data.url}>
-              <ProjectButton variant="secondary">View Project</ProjectButton>
-            </Link>
-          </Container>
-          <Container gridGap="1rem">
-            <Text
-              textAlign="start"
-              margin={0}
-              lineHeight="180%"
-              letterSpacing="0.02rem"
+            <Container
+              flexDirection="row"
+              justifyContent="space-between"
+              alignItems="center"
+              width="100%"
             >
-              {data.caption}
-            </Text>
-            <List marginY="1rem">
-              {data.tags.map((tag: string) => (
-                <ProjectTag key={tag}>{tag}</ProjectTag>
-              ))}
-            </List>
-          </Container>
-        </ProjectContainer>
-      ))}
-    </Grid>
-  </Container>
-);
-
-export const getStaticProps: GetStaticProps = async () => {
-  const projects = await getPosts('projects');
-
-  return {
-    props: {
-      projects,
-    },
-  };
+              <Link href={data.url}>
+                <Title fontSize="2rem" as="h2">
+                  {data.title}
+                </Title>
+              </Link>
+              <Link href={data.url}>
+                <ProjectButton variant="secondary">View Project</ProjectButton>
+              </Link>
+            </Container>
+            <Container gridGap="1rem">
+              <Text
+                textAlign="start"
+                margin={0}
+                lineHeight="180%"
+                letterSpacing="0.02rem"
+              >
+                {data.caption}
+              </Text>
+              <List marginY="1rem">
+                {data.tags.map((tag: string) => (
+                  <ProjectTag key={tag}>{tag}</ProjectTag>
+                ))}
+              </List>
+            </Container>
+          </ProjectContainer>
+        ))}
+      </Grid>
+    </Container>
+  );
 };
 
 export default Projects;
