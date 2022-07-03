@@ -39,7 +39,7 @@ const Home = (): JSX.Element => (
         <Container>
           <Text textAlign="center">
             I&apos;m a Frontend developer with experience in ReactJS {'&'} React
-            Native. Currently CX Engineer @Cisco.
+            Native. Frontend Engineer @ Toddle.
           </Text>
         </Container>
         <Link href="/about">

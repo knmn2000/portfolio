@@ -40,7 +40,8 @@
     "react-notion-x": "^4.15.0",
     "reactdom": "^2.0.0",
     "styled-components": "^5.3.3",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/javascript-time-ago": "^2.0.3",

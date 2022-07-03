@@ -17,14 +17,49 @@ import {
   SiMongodb,
   SiBootstrap,
 } from 'react-icons/si';
-import { getPosts, Post } from '@posts';
+import { Post } from '@posts';
 import { TransparentLink } from '@components';
 
-interface AboutProps {
-  experiences: Post[];
-}
+const About = (): JSX.Element => {
+  const experiences: Post[] = [
+    {
+      caption: ["Associate Software Engineer in the frontend team."],
+      date: "July 2022 - Present",
+      post: "Frontend Engineer",
+      title: "Toddle",
+    },
+    {
+      caption: [`
+      • Worked under the Professional services delivery business unit.
+      Worked with a team on a secure policy generator tool that helped users collect
+      and consolidate the firewall rules of their network.`,
+      `• This tool allowed users to edit, delete, manage and then upload rules to 
+      Cisco FMC (firepower management center)
+      where the new rules would come in effect.
+      `, `• Underwent training to become a part of the CX telemetry and insights team, learned how to use the
+      network profiler to detect and resolve network issues, learned how to onboard new network devices.`,
+    `• Completed 200-901 DEVASC certification as part of this internship.`],
+      date: "January 2022 - June 2022",
+      post: "Technical Undergraduate Intern",
+      title: "Cisco",
+    },
+    {
+      caption: [`
+      • Worked on the front-end of the product, built with ReactJS + TypeScript.
+        Responsibilities included pushing out new features for the platform, fixing
+        bugs, writing tests and making enhancements to the UI/UX.`,
+      `• I was responsible for writing, debugging, testing and maintaining over 190
+        scrapers which scrape regulatory documents and related news items. I was also
+        responsible for overseeing the flow of the payloads through upstream services
+        (Metabase, Kibana) and providing corrections wherever required.`,
 
-const About = ({ experiences }: AboutProps): JSX.Element => {
+      `• Wrote 18% of the scrapers in the codebase. Increased test coverage by 20%. 
+      `],
+      date: "March 2020 - December 2020",
+      post: "Frontend Intern",
+      title: "Radicali",
+    },
+  ];
   const stacks = React.useMemo(
     () => [
       {
@@ -91,8 +126,8 @@ const About = ({ experiences }: AboutProps): JSX.Element => {
         <Container maxWidth={['100%', '720px']} marginY="2rem">
           <Text>I&apos;m a Frontend developer living in Haryana.</Text>
           <Text>
-            During my free time I like going gym, playing guitar, make photoshop
-            edits. You can check some of my guitar videos on instagram&nbsp;
+            During my free time I like working out, playing the guitar, making photoshop
+            edits. You can check out some of my guitar videos on instagram&nbsp;
             <a href="https://instagram.com/karan.mannan">Instagram</a>.
           </Text>
         </Container>
@@ -136,20 +171,17 @@ const About = ({ experiences }: AboutProps): JSX.Element => {
           Work Experiences
         </Title>
         <Container width="100%">
-          {experiences.map(({ data }, i) => (
-            <TransparentLink href={`/about/${data.slug}`} key={data.slug}>
+          {experiences.map((data, i) => (
               <Grid
                 key={i}
-                gridTemplateColumns="1fr 4fr"
                 justifyItems="flex-start"
                 gridGap="1rem"
                 paddingY="2rem"
                 borderBottom="1px solid rgba(0,0,0,0.1)"
+                style={{ justifyContent: 'flex-start' }}
               >
-                <Container width="100%">
-                  <Text>0{experiences.length - i}</Text>
-                </Container>
-                <Grid width="100%" gridTemplateColumns="4fr 1fr">
+
+                <Grid width="100%" >
                   <Container
                     width="100%"
                     alignItems="flex-start"
@@ -157,7 +189,6 @@ const About = ({ experiences }: AboutProps): JSX.Element => {
                   >
                     <Grid
                       width="100%"
-                      gridTemplateColumns="repeat(2, auto)"
                       justifyItems="flex-start"
                       justifyContent="flex-start"
                       gridGap="1rem"
@@ -173,12 +204,12 @@ const About = ({ experiences }: AboutProps): JSX.Element => {
                         {data.date}
                       </Text>
                     </Grid>
-                    <Text fontSize="1rem">{data.caption}</Text>
+                    {data.caption.map((caption, i)=>{
+                      return <Text fontSize="1rem" style={{whiteSpace:'inherit'}}>{caption}</Text>
+                    })}
                   </Container>
-                  <Text fontSize="1.5rem">&rarr;</Text>
                 </Grid>
               </Grid>
-            </TransparentLink>
           ))}
         </Container>
       </Container>
@@ -187,14 +218,9 @@ const About = ({ experiences }: AboutProps): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const experiences = await getPosts('experiences');
-  experiences.sort((a, b) =>
-    b.data.date.toString().localeCompare(a.data.date.toString()),
-  );
-
   return {
     props: {
-      experiences,
+
     },
   };
 };
